@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, Main!</string>
+    <string name="app_name">SoundRecord</string>
+<string name="button_record">Start Record!</string>
+<string name="button_record_stop">Stop Record?</string>
+<string name="button_play">Play!</string>
+</resources>
