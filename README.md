@@ -13,9 +13,10 @@ Dependencies
 Run Server
 ==========
 
-     % cd sinatra-server
-     % bundle install
-     % ruby development.ru
+    % cd sinatra-server
+    % gem install bundler
+    % bundle install
+    % ruby development.ru
 
 check http://localhost:8091
 
