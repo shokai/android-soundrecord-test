@@ -5,4 +5,6 @@
 <string name="button_record">Start Record!</string>
 <string name="button_record_stop">Stop Record?</string>
 <string name="button_play">Play!</string>
+<string name="button_upload">Upload!</string>
+<string name="edittext_api">http://192.168.1.108:8091/upload</string>
 </resources>

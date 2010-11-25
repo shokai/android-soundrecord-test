@@ -20,4 +20,14 @@
         android:id="@+id/ButtonPlay"
         android:text="@string/button_play" />
         
+<EditText android:id="@+id/EditTextAPI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/edittext_api" />
+        
+<Button android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ButtonUpload"
+        android:text="@string/button_upload" />
+        
 </LinearLayout>

@@ -6,3 +6,5 @@ db*
 .fuse*
 *.tch
 bin/*
+*.lock
+*/public/files

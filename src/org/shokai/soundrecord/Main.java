@@ -1,6 +1,15 @@
 package org.shokai.soundrecord;
 
+
 import java.io.File;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.mime.HttpMultipartMode;
+import org.apache.http.entity.mime.MultipartEntity;
+import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.impl.client.DefaultHttpClient;
 
 import android.app.Activity;
 import android.content.res.Resources;
@@ -13,10 +22,12 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class Main extends Activity implements OnClickListener, OnCompletionListener{
     
-    private Button buttonRecord, buttonPlay;
+    private Button buttonRecord, buttonPlay, buttonUpload;
+    private EditText editTextAPI;
     private MediaRecorder recorder;
     private String fileName = "test.3gp";
     private File dataDir;
@@ -35,6 +46,10 @@ public class Main extends Activity implements OnClickListener, OnCompletionListe
         buttonRecord.setOnClickListener(this);
         buttonPlay = (Button)findViewById(R.id.ButtonPlay);
         buttonPlay.setOnClickListener(this);
+        buttonUpload = (Button)findViewById(R.id.ButtonUpload);
+        buttonUpload.setOnClickListener(this);
+        
+        editTextAPI = (EditText)findViewById(R.id.EditTextAPI);
     }
 
     public void onClick(View arg0) {
@@ -54,6 +69,7 @@ public class Main extends Activity implements OnClickListener, OnCompletionListe
                     this.buttonRecord.setText(R.string.button_record_stop);
                 }
                 catch(Exception e){
+                    e.printStackTrace();
                     error(e.toString());
                 }
             }
@@ -66,6 +82,7 @@ public class Main extends Activity implements OnClickListener, OnCompletionListe
                     this.buttonRecord.setText(R.string.button_record);
                 }
                 catch(Exception e){
+                    e.printStackTrace();
                     error(e.toString());
                 }
             }
@@ -81,9 +98,36 @@ public class Main extends Activity implements OnClickListener, OnCompletionListe
                 player.setOnCompletionListener(this);
             }
             catch(Exception e){
+                e.printStackTrace();
                 error(e.toString());
             }
             break;
+        case R.id.ButtonUpload:
+            trace("upload");
+            try{
+                upload(new File(dataDir, fileName), this.editTextAPI.getText().toString());
+            }
+            catch(Exception e){
+                e.printStackTrace();
+                error(e.toString());
+            }
+        }
+    }
+    
+    public void upload(File file, String uri) throws Exception{
+        try{
+            HttpClient httpClient = new DefaultHttpClient();
+            HttpPost post = new HttpPost(uri);
+                        
+            MultipartEntity entity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
+            entity.addPart("file", new FileBody(file));
+            post.setEntity(entity);
+            post.setHeader("User-Agent", "TestAndroidApp/0.1");
+            HttpResponse res = httpClient.execute(post);
+            trace(res.getEntity().getContent().toString());
+        }
+        catch(Exception e){
+            throw e;
         }
     }
 

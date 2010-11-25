@@ -16,6 +16,8 @@ public final class R {
     public static final class id {
         public static final int ButtonPlay=0x7f050001;
         public static final int ButtonRecord=0x7f050000;
+        public static final int ButtonUpload=0x7f050003;
+        public static final int EditTextAPI=0x7f050002;
     }
     public static final class layout {
         public static final int main=0x7f030000;
@@ -25,6 +27,8 @@ public final class R {
         public static final int button_play=0x7f040004;
         public static final int button_record=0x7f040002;
         public static final int button_record_stop=0x7f040003;
+        public static final int button_upload=0x7f040005;
+        public static final int edittext_api=0x7f040006;
         public static final int hello=0x7f040000;
     }
 }
